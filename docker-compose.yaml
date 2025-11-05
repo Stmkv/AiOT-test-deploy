@@ -20,7 +20,7 @@ services:
       - start-dev
       - --import-realm
       - --hostname-url=http://91.222.239.10
-      - --http-relative-path=/keycloak
+      - --http-relative-path=keycloak
       - --hostname-strict=false
       - --proxy-headers=xforwarded
     env_file: ./config/.env.prod
