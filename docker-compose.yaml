@@ -19,10 +19,9 @@ services:
     command:
       - start-dev
       - --import-realm
-      - --hostname-url=91.222.239.10
-      - --http-relative-path=/
+      - --hostname-url=https://91.222.239.10/keycloak
+      - --http-relative-path=/keycloak
       - --hostname-strict=false
-      - --hostname-strict-https=false
       - --proxy-headers=xforwarded
     env_file: ./config/.env.prod
     ports:
