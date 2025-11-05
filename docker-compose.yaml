@@ -21,7 +21,7 @@ services:
       - --import-realm
       - --hostname-url=https://91.222.239.10/keycloak
       - --hostname-strict=false
-      - --proxy=edge
+      - --proxy-headers=xforwarded
       - --http-relative-path=/keycloak
     env_file: ./config/.env.prod
     ports:
