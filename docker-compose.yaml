@@ -17,7 +17,7 @@ services:
     image: quay.io/keycloak/keycloak:26.0.0
     container_name: keycloak
     command:
-      - start-dev
+      - start
       - --import-realm
       - --hostname-url=https://91.222.239.10/keycloak
       - --hostname-strict=false
@@ -25,8 +25,7 @@ services:
       - --http-relative-path=/keycloak
     env_file: ./config/.env.prod
     environment:
-      KC_PROXY_HEADERS: xforwarded
-      KC_HTTP_ENABLED: "true"
+      - JAVA_OPTS_APPEND=-Djava.net.preferIPv4Stack=true
     ports:
       - "8080:8080"
     depends_on:
