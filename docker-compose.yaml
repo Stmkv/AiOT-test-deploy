@@ -1,0 +1,82 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    restart: always
+    env_file: ./config/.env.prod
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - authnet
+    ports:
+      - "5432:5432"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.0
+    container_name: keycloak
+    command:
+      - start-dev
+      - --import-realm
+      - --hostname-url=http://localhost:8080
+      - --hostname-strict=false
+    env_file: ./config/.env.prod
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    volumes:
+      - ./fastapi-auth-keycloak/keycloak/realms:/opt/keycloak/data/import
+    networks:
+      - authnet
+
+  auth-service:
+    build:
+      context: ./fastapi-auth-keycloak
+      dockerfile: Dockerfile
+    container_name: auth-service
+    env_file: ./config/.env.prod
+    depends_on:
+      - keycloak
+    ports:
+      - "8081:8081"
+    networks:
+      - authnet
+
+  frontend-builder:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-builder
+    command: ["npm", "run", "build"]
+    volumes:
+      - frontend_dist:/app/dist
+    networks:
+      - authnet
+
+  angie:
+    build:
+      context: ./angie
+      dockerfile: Dockerfile
+    container_name: angie
+    depends_on:
+      - frontend-builder
+      - auth-service
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - frontend_dist:/usr/share/angie/html:ro
+      - ./angie/angie.conf:/etc/angie/angie.conf:ro
+      - ./angie/ssl:/etc/angie/ssl:ro
+    networks:
+      - authnet
+
+networks:
+  authnet:
+    driver: bridge
+
+volumes:
+  frontend_dist:
+  postgres_data:

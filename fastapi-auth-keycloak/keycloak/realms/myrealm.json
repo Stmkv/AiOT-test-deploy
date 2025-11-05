@@ -1,0 +1,32 @@
+{
+  "realm": "myrealm",
+  "enabled": true,
+  "verifyEmail": true,
+  "registrationAllowed": true,
+  "resetPasswordAllowed": true,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "smtpServer": {
+    "from": "st.mkv03@gmail.com",
+    "fromDisplayName": "Keycloak",
+    "host": "smtp.gmail.com",
+    "port": "587",
+    "auth": "true",
+    "user": "st.mkv03@gmail.com",
+    "starttls": "true",
+    "ssl": "false"
+  },
+  "clients": [
+    {
+      "clientId": "myclient",
+      "rootUrl": "http://localhost:8000",
+      "secret": "your_secret_here",
+      "redirectUris": [
+        "*"
+      ],
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "directAccessGrantsEnabled": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 1px #007aff40;
+}
+
+.error {
+  height: 0.1em;
+  font-size: 0.8rem;
+  line-height: 1;
+  margin-top: 0.5px;
+  color: #e63946;
+  transition: opacity 0.2s ease;
+}
+
+.error:empty {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.required {
+  color: red;
+  margin-left: 4px;
+  font-size: 14px;
+}
