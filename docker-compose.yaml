@@ -19,7 +19,7 @@ services:
     command:
       - start-dev
       - --import-realm
-      - --hostname-url=http://91.222.239.10:8080
+      - --hostname-url=http://91.222.239.10
       - --hostname-strict=false
     env_file: ./config/.env.prod
     ports:
