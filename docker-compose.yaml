@@ -24,6 +24,8 @@ services:
       - --proxy-headers=xforwarded
       - --http-relative-path=/keycloak
     env_file: ./config/.env.prod
+    environment:
+      - JAVA_OPTS_APPEND=-Djava.net.preferIPv4Stack=true
     ports:
       - "8080:8080"
     depends_on:
