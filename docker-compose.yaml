@@ -19,8 +19,10 @@ services:
     command:
       - start-dev
       - --import-realm
-      - --hostname-url=http://localhost:8080
+      - --hostname=91.222.239.10
+      - --hostname-path=/keycloak
       - --hostname-strict=false
+      - --http-relative-path=/keycloak
     env_file: ./config/.env.prod
     ports:
       - "8080:8080"
