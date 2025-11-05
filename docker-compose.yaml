@@ -22,6 +22,7 @@ services:
       - --hostname-url=91.222.239.10
       - --http-relative-path=/
       - --hostname-strict=false
+      - --hostname-strict-https=false
       - --proxy-headers=xforwarded
     env_file: ./config/.env.prod
     ports:
