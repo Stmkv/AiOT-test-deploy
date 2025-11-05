@@ -25,9 +25,8 @@ services:
       - --http-relative-path=/keycloak
     env_file: ./config/.env.prod
     environment:
-        KC_HOSTNAME_URL: https://91.222.239.10
-        KC_HOSTNAME_STRICT: "false"
-        KC_HOSTNAME_STRICT_HTTPS: "false"
+      KC_PROXY_HEADERS: xforwarded
+      KC_HTTP_ENABLED: "true"
     ports:
       - "8080:8080"
     depends_on:
