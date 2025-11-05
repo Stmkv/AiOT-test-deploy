@@ -22,7 +22,7 @@ services:
       - --hostname-url=http://91.222.239.10
       - --http-relative-path=/keycloak
       - --hostname-strict=false
-      - --proxy=edge
+      - --proxy-headers=xforwarded
     env_file: ./config/.env.prod
     ports:
       - "8080:8080"
