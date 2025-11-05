@@ -25,7 +25,9 @@ services:
       - --http-relative-path=/keycloak
     env_file: ./config/.env.prod
     environment:
-      - JAVA_OPTS_APPEND=-Djava.net.preferIPv4Stack=true
+        KC_HOSTNAME_URL: https://91.222.239.10
+        KC_HOSTNAME_STRICT: "false"
+        KC_HOSTNAME_STRICT_HTTPS: "false"
     ports:
       - "8080:8080"
     depends_on:
