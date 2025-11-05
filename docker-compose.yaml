@@ -20,9 +20,9 @@ services:
       - start-dev
       - --import-realm
       - --hostname-url=https://91.222.239.10/keycloak
-      - --http-relative-path=/keycloak
       - --hostname-strict=false
-      - --proxy-headers=xforwarded
+      - --proxy=edge
+      - --http-relative-path=/keycloak
     env_file: ./config/.env.prod
     ports:
       - "8080:8080"
